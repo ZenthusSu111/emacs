@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 let
-  emacsPath = "${config.home.homeDirectory}/zixos/emacs";
+  emacsPath = "${config.home.homeDirectory}/zixos";
 in {
 
   services.emacs = {
