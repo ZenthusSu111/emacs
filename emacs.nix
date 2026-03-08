@@ -32,7 +32,7 @@ in {
 
   };
 
-  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${configPath}/emacs";
+  xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${emacsPath}/emacs";
 
 
 

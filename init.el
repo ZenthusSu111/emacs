@@ -6,4 +6,3 @@
 (global-display-line-numbers-mode 1)
 ;;; 相對行號
 (setq display-line-numbers-type 'relative)
-
