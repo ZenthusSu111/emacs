@@ -27,10 +27,26 @@ in {
       treesit-grammars.with-all-grammars
 
       treesit-auto
+      nix-ts-mode
 
+      nerd-icons
+
+      orderless
+      corfu
+      marginalia
+      cape
+      vertico
+      consult
+      magit
+      envrc
     ];
 
   };
+
+  home.packages = with pkgs; [
+    nixd
+    direnv
+  ];
 
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${emacsPath}/emacs";
 
