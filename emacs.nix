@@ -45,8 +45,17 @@ in {
 
   home.packages = with pkgs; [
     nixd
-    direnv
   ];
+
+  programs = {
+    direnv = {
+      enable = true;
+      enableBashIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+
+    bash.enable = true; # see note on other shells below
+  };
 
   xdg.configFile."emacs".source = config.lib.file.mkOutOfStoreSymlink "${emacsPath}/emacs";
 

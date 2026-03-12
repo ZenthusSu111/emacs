@@ -1,10 +1,8 @@
 ;;; load theme
 (load-theme 'modus-vivendi-tinted t)
 
-(let ((font-name "CaskaydiaMono Nerd Font Mono-16"))
-  (when (member "CaskaydiaMono Nerd Font Mono" (font-family-list))
-    (add-to-list 'default-frame-alist `(font . ,font-name))
-    (set-frame-font font-name t t)))
+(add-to-list 'default-frame-alist
+             '(font . "Iosevka Nerd Font-16"))
 
 ;;; show cursor locations
 (line-number-mode t)
@@ -35,13 +33,15 @@
 
 
 (use-package envrc
-  :hook (after-init . envrc-global-mode))
+  :hook (after-init . envrc-global-mode)
+  :config
+  (setq envrc-process-type 'asynchronous))
 
 (use-package eglot
   :ensure nil
   :hook ((rust-ts-mode . eglot-ensure)
          (nix-ts-mode . eglot-ensure)
-         (python-mode . eglot-ensure)
+         (python-ts-mode . eglot-ensure)
          (c-mode . eglot-ensure)
          (c++-mode . eglot-ensure))
   :config
