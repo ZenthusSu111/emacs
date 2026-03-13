@@ -1,26 +1,37 @@
-;;; disable use-package auto download
-(defvar is-NixOS (file-exists-p "/etc/NIXOS"))
+;;; -------------------- PERFORMANCE & HACKS
+;; HACK: inscrease startup speed
 
-(if is-NixOS
-    (setq use-package-always-ensure nil)
-  (setq use-package-always-ensure t))
+;; Delay garbage collection while Emacs is booting
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
 
-;;; disable menu-bar
-(when (fboundp 'menu-bar-mode)
-  (menu-bar-mode -1))
+;; Schedule garbage collection sensible defaults for after booting
+(add-hook 'after-init-hook
+          (lambda ()
+            (setq gc-cons-threshold (* 100 1024 1024)
+                  gc-cons-percentage 0.1)))
 
-;;; disable tool-bar
-(when (fboundp 'tool-bar-mode)
-	(tool-bar-mode -1))
-;;; disable bell ring
-(setq-default ring-bell-function 'ignore)
-;;; disable startup screen
-(setq-default inhibit-startup-screen t)
+;; Single VC backend inscreases booting speed
+(setq vc-handled-backends '(Git))
+
+;; Do not native compile if on battery power
+(setopt native-comp-async-on-battery-power nil) ; EMACS-31
 
 
-(when (fboundp 'scroll-bar-mode)
-  (scroll-bar-mode -1))
-;;; 行號顯示
-(global-display-line-numbers-mode 1)
-;;; 相對行號
-(setq display-line-numbers-type 'relative)
+
+;; Avoid raising the *Messages* buffer if anything is still without
+;; lexical bindings
+(setq warning-minimum-level :error)  ; 提高警告程度 避免warning就導致emacs無法開啟
+(setq warning-suppress-types '((lexical-binding)))
+
+;; Always start Emacs and new frames maximized
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+
+(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(if (fboundp 'tooltip-mode) (tooltip-mode -1))
+(if (fboundp 'fringe-mode) (fringe-mode -1))
+
+(provide 'early-init)

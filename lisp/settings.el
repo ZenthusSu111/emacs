@@ -1,0 +1,35 @@
+(use-package emacs
+  :ensure nil
+  :custom
+  (use-package-always-ensure t)                   ; use-package 預設下載套件
+  (ring-bell-function 'ignore)                    ; 關閉bell
+  (line-number-mode t)                            ; 行號
+  (column-number-mode t)                          ; 相對行號
+  (blink-cursor-mode nil)                         ; 光標閃爍
+  (tab-width 4)
+  (line-spacing nil)                              ; 使用字體的間距
+  (initial-scratch-message """")                  ; 讓預設buffer沒有文字出現
+  (frame-resize-pixelwise t)                      ; 以像素為標準縮放視窗而非字元
+  (delete-selection-mode t)                       ; 反白選取後直接覆蓋 而不是貼上
+  (help-window-select t)                          ; help文檔開啟後光標自動轉換
+  (use-short-answer t)                            ; yes/no詢問簡化為y/n
+)
+;;; load theme
+(load-theme 'modus-vivendi-tinted t)
+
+(add-to-list 'default-frame-alist
+             '(font . "Iosevka Nerd Font-16"))
+
+
+
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+
+(require 'package)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+
+(provide 'settings)
