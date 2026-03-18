@@ -5,8 +5,9 @@
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)) ; 載入 lisp資料夾
 
-(require 'settings)
+(require 'no-littering)
 (require 'treesitter)
+(require 'settings)
 (require 'completion)
 (require 'direnv)
 (require 'lsp)

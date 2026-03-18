@@ -1,8 +1,13 @@
 (use-package emacs
   :ensure nil
+  :init
+  :config
+  (global-display-line-numbers-mode t)
+  
   :custom
   (use-package-always-ensure t)                   ; use-package 預設下載套件
   (ring-bell-function 'ignore)                    ; 關閉bell
+  (display-line-numbers-type 'relative)           ; 開啟相對行號
   (line-number-mode t)                            ; 行號
   (column-number-mode t)                          ; 相對行號
   (blink-cursor-mode nil)                         ; 光標閃爍
