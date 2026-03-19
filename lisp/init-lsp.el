@@ -9,4 +9,4 @@
   (setq eglot-autoshutdown t))
 
 
-(provide 'lsp)
+(provide 'init-lsp)

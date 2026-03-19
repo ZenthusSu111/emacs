@@ -3,4 +3,4 @@
   :config
   (setq envrc-process-type 'asynchronous))
 
-(provide 'direnv)
+(provide 'init-direnv)

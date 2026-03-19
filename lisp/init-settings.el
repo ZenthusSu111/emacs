@@ -6,6 +6,7 @@
   
   :custom
   (use-package-always-ensure t)                   ; use-package 預設下載套件
+  (create-lockfiles nil)                          ; 關閉lock-files
   (ring-bell-function 'ignore)                    ; 關閉bell
   (display-line-numbers-type 'relative)           ; 開啟相對行號
   (line-number-mode t)                            ; 行號
@@ -25,6 +26,18 @@
 (add-to-list 'default-frame-alist
              '(font . "Iosevka Nerd Font-16"))
 
+;;; 關閉shell treemacs 行數顯示
+(dolist (hook '(treemacs-mode-hook
+				eshell-mode-hook))
+  (add-hook hook (lambda () (display-line-numbers-mode -1))))
+
+;;; 讓eshell彈出在下方
+(add-to-list 'display-buffer-alist
+  '("\\*eshell\\*"
+    (display-buffer-in-side-window)
+    (side . bottom)
+    (slot . 0)
+    (window-height . 0.3)))
 
 
 (prefer-coding-system 'utf-8)
@@ -37,4 +50,4 @@
 (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (package-initialize)
 
-(provide 'settings)
+(provide 'init-settings)

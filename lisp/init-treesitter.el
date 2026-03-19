@@ -8,4 +8,4 @@
   (global-treesit-auto-mode))
 (setq treesit-auto-langs '(c cpp cmake c-sharp java lua html javascript tsx typescript vue  python rust go nix org bash markdown php sql yaml dockerfile))
 
-(provide 'treesitter)
+(provide 'init-treesitter)

@@ -10,7 +10,6 @@
 
 
 # own
-custom.el
 
 
 
@@ -89,3 +88,5 @@ flycheck_*.el
 /transient/
 
 /var/
+
+/etc/
